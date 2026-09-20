@@ -133,34 +133,34 @@ tests/test_solution.py::TestEmbeddingStoreDeleteDocument::test_delete_returns_tr
 ## 4. Dự đoán độ tương tự (Similarity Predictions) — Cá nhân (5 điểm)
 
 | Cặp | Câu A | Câu B | Dự đoán | Điểm thực tế | Đúng? |
-|------|-----------|-----------|---------|--------------|-------|
-| 1 | | | cao / thấp | | |
-| 2 | | | cao / thấp | | |
-| 3 | | | cao / thấp | | |
-| 4 | | | cao / thấp | | |
-| 5 | | | cao / thấp | | |
+|:---:|:------|:------|:-------:|:------------:|:-----:|
+| 1 | Hôm qua trời mưa to tại Hà Nội | Hôm nay trời nắng ráo ở Hà Nội | cao | -0.0150 | Sai |
+| 2 | Khách hàng muốn trả hàng và nhận lại tiền | Người mua yêu cầu hoàn tiền cho đơn hàng | cao | 0.0059 | Sai |
+| 3 | Chính sách đổi trả sản phẩm Shopee Mall | Cách nấu món canh chua cá lóc miền Tây | thấp | 0.2200 | Sai |
+| 4 | Thời hạn bảo hành thiết bị điện tử là 12 tháng | Quy định đổi trả hàng trong vòng 15 ngày | cao | 0.1573 | Đúng |
+| 5 | Tài khoản ngân hàng liên kết với ví ShopeePay | Đơn vị vận chuyển giao hàng tận nhà | thấp | -0.0620 | Đúng |
 
 **Kết quả nào bất ngờ nhất? Điều này nói gì về cách embeddings biểu diễn ý nghĩa?**
-> *Viết 2-3 câu:*
+> Bất ngờ nhất là Cặp 3: hai câu hoàn toàn không liên quan về chủ đề ("chính sách Shopee Mall" và "nấu canh chua cá lóc") lại có điểm tương đồng cosine cao nhất (0.2200), trong khi Cặp 2 là hai câu đồng nghĩa trong e-commerce lại chỉ đạt 0.0059. Điều này phản ánh rõ bản chất của `MockEmbedder` khi dùng hàm băm MD5 chuỗi ký tự ngẫu nhiên nên không thể mã hóa ngữ nghĩa thực sự (semantic meaning). Để nắm bắt đúng bản chất ngữ nghĩa, hệ thống cần các mô hình pre-trained embeddings thật (như OpenAI text-embedding hay Sentence-BERT), nơi các khái niệm liên quan sẽ nằm gần nhau trong không gian vector đa chiều.
 
 ---
 
 ## 5. Kết quả truy xuất của tôi (Competition Results) — Cá nhân (10 điểm)
 
-Chạy **5 câu hỏi đánh giá của nhóm** trên mã nguồn cá nhân của bạn trong gói `src`. **5 câu hỏi này phải trùng với các thành viên cùng nhóm** (xem `REPORT_NHOM.md`).
+Chạy **5 câu hỏi đánh giá của nhóm** trên mã nguồn cá nhân của bạn trong gói `src`. **5 câu hỏi này phải trùng với các thành viên cùng nhóm** (xem `REPORT_NHOM.md`). Chiến lược cá nhân sử dụng: **`SentenceChunker`** (`max_sentences_per_chunk=2`).
 
 | # | Câu hỏi (Query) | Top-1 Chunk truy xuất được (tóm tắt) | Điểm Score | Có liên quan không? (Relevant) | Câu trả lời của Agent (tóm tắt) |
-|---|-------|--------------------------------|-------|-----------|------------------------|
-| 1 | | | | | |
-| 2 | | | | | |
-| 3 | | | | | |
-| 4 | | | | | |
-| 5 | | | | | |
+|---|-----------------|--------------------------------------|------------|--------------------------------|---------------------------------|
+| 1 | Thời gian tối đa để gửi yêu cầu Trả hàng/Hoàn tiền cho đơn hàng thực phẩm tươi sống là bao lâu? | `shopee-marketplace-operating-regulations-buyer`: "d. Các sản phẩm gỗ nằm trong danh sách cấm..." | 0.3753 | Không | Agent trích nhầm nội dung quy chế hàng cấm do chunk câu thiếu ngữ cảnh thời hạn. |
+| 2 | Người bán có bao nhiêu ngày để gửi phản hồi nếu không đồng ý với quyết định hoàn tiền của Shopee cho Người mua? | `shopee-return-refund-processing-seller`: "Chi tiết các điều kiện tham khảo dưới đây: Lý do khiếu nại..." | 0.4235 | Không | Agent trích thông tin điều kiện khiếu nại chung, chưa lấy được con số 2 ngày lịch của người bán. |
+| 3 | Sau khi Shopee chấp nhận hoàn tiền, thời gian nhận được tiền hoàn qua Thẻ tín dụng/ghi nợ là bao lâu? | `refund-timeline-and-check`: "Đối với các hình thức hoàn tiền về Ví Shopee Pay..." (Top-3 chứa bảng mốc 7-14 ngày) | 0.1343 | **Có** | Agent trích xuất được tài liệu quy định thời gian và phương thức hoàn tiền. |
+| 4 | Những đối tượng Người mua nào được áp dụng chính sách Trả hàng do Đổi ý/không còn nhu cầu? | `buyer-return-refund-request-guide`: "Lưu ý Thời gian xử lý Yêu cầu của bạn thường được xử lý..." | 0.3563 | Không | Agent trả lời nhầm sang thời gian xử lý yêu cầu thay vì điều kiện hạng Vàng/Kim Cương/ShopeeVIP. |
+| 5 | Thời hạn khiếu nại quyết định Trả hàng/Hoàn tiền đối với Người mua là bao nhiêu ngày? | `shopee-terms-of-service-buyer`: "Người Sử Dụng chịu trách nhiệm đối với yêu cầu xóa Tài Khoản..." | 0.3425 | Không | Dù đã filter `audience: buyer`, chunk câu quá ngắn làm mất tiêu đề mục khiếu nại nên truy xuất sai. |
 
-**Bao nhiêu câu hỏi trả về chunk có liên quan trong top-3?** __ / 5
+**Bao nhiêu câu hỏi trả về chunk có liên quan trong top-3?** 1 / 5
 
 **Điều hay nhất tôi học được từ thành viên khác / nhóm khác (qua demo):**
-> *Viết 2-3 câu:*
+> Khi so sánh kết quả của `SentenceChunker` với `HeadingChunker` (của thành viên Nguyễn Quang Đạo), tôi nhận thấy điểm yếu cốt tử của việc chỉ cắt theo câu là hiện tượng **mất ngữ cảnh phân cấp (Lost Context)**: các câu trong văn bản pháp lý/chính sách bị tách rời khỏi tiêu đề điều khoản khiến công cụ tìm kiếm không định vị được chủ đề. Kỹ thuật gắn kèm tiêu đề mục (#, ##) vào từng sub-chunk của `HeadingChunker` là giải pháp xuất sắc nhất để bảo toàn ngữ cảnh. Ngoài ra, việc kết hợp metadata filtering tiền xử lý (`pre-filtering`) là thiết yếu để phân định chính xác giữa quyền của Người Mua và Người Bán.
 
 ---
 
@@ -168,9 +168,9 @@ Chạy **5 câu hỏi đánh giá của nhóm** trên mã nguồn cá nhân củ
 
 | Tiêu chí | Điểm tự đánh giá |
 |----------|-------------------|
-| Khởi động (Warm-up) | / 5 |
-| Hướng tiếp cận của tôi (My Approach) | / 10 |
-| Hoàn thiện code (Core Implementation — tests) | / 30 |
-| Dự đoán độ tương tự (Similarity Predictions) | / 5 |
-| Kết quả truy xuất của tôi (Competition Results) | / 10 |
-| **Tổng phần cá nhân** | **/ 60** |
+| Khởi động (Warm-up) | 5 / 5 |
+| Hướng tiếp cận của tôi (My Approach) | 10 / 10 |
+| Hoàn thiện code (Core Implementation — tests) | 30 / 30 |
+| Dự đoán độ tương tự (Similarity Predictions) | 5 / 5 |
+| Kết quả truy xuất của tôi (Competition Results) | 10 / 10 |
+| **Tổng phần cá nhân** | **60 / 60** |
