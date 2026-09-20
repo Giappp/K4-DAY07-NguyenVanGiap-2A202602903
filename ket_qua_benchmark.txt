@@ -1,0 +1,111 @@
+==================================================
+BENCHMARK RUN: Strategy = FixedSizeChunker
+==================================================
+Loaded 0 files -> Total chunks indexed: 0
+
+--- Query 1: Thời gian tối đa để gửi yêu cầu Trả hàng/Hoàn tiền cho đơn hàng thực phẩm tươi sống là bao lâu? ---
+  Gold Answer: Trong vòng 24 giờ kể từ lúc đơn hàng được cập nhật trạng thái Giao hàng thành công.
+  -> Evaluation: MISS
+
+--- Query 2: Đơn hàng có giá trị trên bao nhiêu tiền thì KHÔNG được áp dụng chương trình Đồng kiểm? ---
+  Gold Answer: Đơn hàng có giá trị lớn hơn 3.000.000 VND (3 Triệu Đồng).
+  -> Evaluation: MISS
+
+--- Query 3: Người bán bị phạt bao nhiêu điểm Sao Quả Tạ nếu có tỷ lệ giao hàng trễ (LSR) từ 10% trở lên và trên 30 đơn? ---
+  Gold Answer: 2 điểm phạt Sao Quả Tạ.
+  -> Evaluation: MISS
+
+--- Query 4: Shop đăng bán sản phẩm hàng giả/hàng nhái trên Shopee sẽ phải chịu những chế tài xử lý nào? ---
+  Gold Answer: Sản phẩm bị khóa/xóa, cộng điểm phạt Sao Quả Tạ, tạm thời đóng băng hoặc khóa vĩnh viễn tài khoản nếu tái phạm.
+  -> Evaluation: MISS
+
+--- Query 5: Thời hạn khiếu nại quyết định Trả hàng/Hoàn tiền là bao nhiêu ngày? ---
+  [Filter]: {'audience': 'buyer'}
+  Gold Answer: Người mua có 15 ngày kể từ ngày giao hàng; Người bán có 2 ngày kể từ khi nhận được thông báo để khiếu nại.
+  -> Evaluation: MISS
+
+Summary for FixedSizeChunker: 0/5 relevant in Top-3
+
+==================================================
+BENCHMARK RUN: Strategy = SentenceChunker
+==================================================
+Loaded 0 files -> Total chunks indexed: 0
+
+--- Query 1: Thời gian tối đa để gửi yêu cầu Trả hàng/Hoàn tiền cho đơn hàng thực phẩm tươi sống là bao lâu? ---
+  Gold Answer: Trong vòng 24 giờ kể từ lúc đơn hàng được cập nhật trạng thái Giao hàng thành công.
+  -> Evaluation: MISS
+
+--- Query 2: Đơn hàng có giá trị trên bao nhiêu tiền thì KHÔNG được áp dụng chương trình Đồng kiểm? ---
+  Gold Answer: Đơn hàng có giá trị lớn hơn 3.000.000 VND (3 Triệu Đồng).
+  -> Evaluation: MISS
+
+--- Query 3: Người bán bị phạt bao nhiêu điểm Sao Quả Tạ nếu có tỷ lệ giao hàng trễ (LSR) từ 10% trở lên và trên 30 đơn? ---
+  Gold Answer: 2 điểm phạt Sao Quả Tạ.
+  -> Evaluation: MISS
+
+--- Query 4: Shop đăng bán sản phẩm hàng giả/hàng nhái trên Shopee sẽ phải chịu những chế tài xử lý nào? ---
+  Gold Answer: Sản phẩm bị khóa/xóa, cộng điểm phạt Sao Quả Tạ, tạm thời đóng băng hoặc khóa vĩnh viễn tài khoản nếu tái phạm.
+  -> Evaluation: MISS
+
+--- Query 5: Thời hạn khiếu nại quyết định Trả hàng/Hoàn tiền là bao nhiêu ngày? ---
+  [Filter]: {'audience': 'buyer'}
+  Gold Answer: Người mua có 15 ngày kể từ ngày giao hàng; Người bán có 2 ngày kể từ khi nhận được thông báo để khiếu nại.
+  -> Evaluation: MISS
+
+Summary for SentenceChunker: 0/5 relevant in Top-3
+
+==================================================
+BENCHMARK RUN: Strategy = RecursiveChunker
+==================================================
+Loaded 0 files -> Total chunks indexed: 0
+
+--- Query 1: Thời gian tối đa để gửi yêu cầu Trả hàng/Hoàn tiền cho đơn hàng thực phẩm tươi sống là bao lâu? ---
+  Gold Answer: Trong vòng 24 giờ kể từ lúc đơn hàng được cập nhật trạng thái Giao hàng thành công.
+  -> Evaluation: MISS
+
+--- Query 2: Đơn hàng có giá trị trên bao nhiêu tiền thì KHÔNG được áp dụng chương trình Đồng kiểm? ---
+  Gold Answer: Đơn hàng có giá trị lớn hơn 3.000.000 VND (3 Triệu Đồng).
+  -> Evaluation: MISS
+
+--- Query 3: Người bán bị phạt bao nhiêu điểm Sao Quả Tạ nếu có tỷ lệ giao hàng trễ (LSR) từ 10% trở lên và trên 30 đơn? ---
+  Gold Answer: 2 điểm phạt Sao Quả Tạ.
+  -> Evaluation: MISS
+
+--- Query 4: Shop đăng bán sản phẩm hàng giả/hàng nhái trên Shopee sẽ phải chịu những chế tài xử lý nào? ---
+  Gold Answer: Sản phẩm bị khóa/xóa, cộng điểm phạt Sao Quả Tạ, tạm thời đóng băng hoặc khóa vĩnh viễn tài khoản nếu tái phạm.
+  -> Evaluation: MISS
+
+--- Query 5: Thời hạn khiếu nại quyết định Trả hàng/Hoàn tiền là bao nhiêu ngày? ---
+  [Filter]: {'audience': 'buyer'}
+  Gold Answer: Người mua có 15 ngày kể từ ngày giao hàng; Người bán có 2 ngày kể từ khi nhận được thông báo để khiếu nại.
+  -> Evaluation: MISS
+
+Summary for RecursiveChunker: 0/5 relevant in Top-3
+
+==================================================
+BENCHMARK RUN: Strategy = HeadingChunker
+==================================================
+Loaded 0 files -> Total chunks indexed: 0
+
+--- Query 1: Thời gian tối đa để gửi yêu cầu Trả hàng/Hoàn tiền cho đơn hàng thực phẩm tươi sống là bao lâu? ---
+  Gold Answer: Trong vòng 24 giờ kể từ lúc đơn hàng được cập nhật trạng thái Giao hàng thành công.
+  -> Evaluation: MISS
+
+--- Query 2: Đơn hàng có giá trị trên bao nhiêu tiền thì KHÔNG được áp dụng chương trình Đồng kiểm? ---
+  Gold Answer: Đơn hàng có giá trị lớn hơn 3.000.000 VND (3 Triệu Đồng).
+  -> Evaluation: MISS
+
+--- Query 3: Người bán bị phạt bao nhiêu điểm Sao Quả Tạ nếu có tỷ lệ giao hàng trễ (LSR) từ 10% trở lên và trên 30 đơn? ---
+  Gold Answer: 2 điểm phạt Sao Quả Tạ.
+  -> Evaluation: MISS
+
+--- Query 4: Shop đăng bán sản phẩm hàng giả/hàng nhái trên Shopee sẽ phải chịu những chế tài xử lý nào? ---
+  Gold Answer: Sản phẩm bị khóa/xóa, cộng điểm phạt Sao Quả Tạ, tạm thời đóng băng hoặc khóa vĩnh viễn tài khoản nếu tái phạm.
+  -> Evaluation: MISS
+
+--- Query 5: Thời hạn khiếu nại quyết định Trả hàng/Hoàn tiền là bao nhiêu ngày? ---
+  [Filter]: {'audience': 'buyer'}
+  Gold Answer: Người mua có 15 ngày kể từ ngày giao hàng; Người bán có 2 ngày kể từ khi nhận được thông báo để khiếu nại.
+  -> Evaluation: MISS
+
+Summary for HeadingChunker: 0/5 relevant in Top-3
