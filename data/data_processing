@@ -1,0 +1,32 @@
+import pandas as pd
+import os
+
+input_path = "urls-deleted.csv"
+output_path = "urls_audience_split.csv"
+base_dir = os.path.dirname(os.path.abspath(__file__))
+
+# Đọc CSV, giữ nguyên các cột
+df = pd.read_csv(os.path.join(base_dir, input_path))
+
+# Chuẩn hóa riêng trường audience để xử lý các giá trị buyer, seller
+rows = []
+for _, row in df.iterrows():
+    audience = str(row["audience"]).strip()
+    if audience.replace(" ", "") == "buyer,seller":
+        row_buyer = row.copy()
+        row_buyer["audience"] = "buyer"
+        row_buyer["doc_id"] = f"{row['doc_id']}_buyer"
+        rows.append(row_buyer)
+
+        row_seller = row.copy()
+        row_seller["audience"] = "seller"
+        row_seller["doc_id"] = f"{row['doc_id']}_seller"
+        rows.append(row_seller)
+    else:
+        rows.append(row)
+
+result = pd.DataFrame(rows, columns=df.columns)
+result.to_csv(output_path, index=False, encoding="utf-8-sig")
+
+print(f"Đã xử lý {len(df)} dòng gốc thành {len(result)} dòng.")
+print(f"File kết quả: {output_path}")

@@ -1,111 +1,199 @@
-==================================================
-BENCHMARK RUN: Strategy = FixedSizeChunker
-==================================================
-Loaded 0 files -> Total chunks indexed: 0
-
---- Query 1: Thời gian tối đa để gửi yêu cầu Trả hàng/Hoàn tiền cho đơn hàng thực phẩm tươi sống là bao lâu? ---
-  Gold Answer: Trong vòng 24 giờ kể từ lúc đơn hàng được cập nhật trạng thái Giao hàng thành công.
-  -> Evaluation: MISS
-
---- Query 2: Đơn hàng có giá trị trên bao nhiêu tiền thì KHÔNG được áp dụng chương trình Đồng kiểm? ---
-  Gold Answer: Đơn hàng có giá trị lớn hơn 3.000.000 VND (3 Triệu Đồng).
-  -> Evaluation: MISS
-
---- Query 3: Người bán bị phạt bao nhiêu điểm Sao Quả Tạ nếu có tỷ lệ giao hàng trễ (LSR) từ 10% trở lên và trên 30 đơn? ---
-  Gold Answer: 2 điểm phạt Sao Quả Tạ.
-  -> Evaluation: MISS
-
---- Query 4: Shop đăng bán sản phẩm hàng giả/hàng nhái trên Shopee sẽ phải chịu những chế tài xử lý nào? ---
-  Gold Answer: Sản phẩm bị khóa/xóa, cộng điểm phạt Sao Quả Tạ, tạm thời đóng băng hoặc khóa vĩnh viễn tài khoản nếu tái phạm.
-  -> Evaluation: MISS
-
---- Query 5: Thời hạn khiếu nại quyết định Trả hàng/Hoàn tiền là bao nhiêu ngày? ---
-  [Filter]: {'audience': 'buyer'}
-  Gold Answer: Người mua có 15 ngày kể từ ngày giao hàng; Người bán có 2 ngày kể từ khi nhận được thông báo để khiếu nại.
-  -> Evaluation: MISS
-
-Summary for FixedSizeChunker: 0/5 relevant in Top-3
-
-==================================================
+============================================================
 BENCHMARK RUN: Strategy = SentenceChunker
-==================================================
-Loaded 0 files -> Total chunks indexed: 0
+============================================================
+Loaded 25 files from /home/giap/Desktop/Workspace/Vin AI/K4-DAY07-NguyenVanGiap-2A202602903/data/shopee-returns -> Total chunks indexed: 1665
 
 --- Query 1: Thời gian tối đa để gửi yêu cầu Trả hàng/Hoàn tiền cho đơn hàng thực phẩm tươi sống là bao lâu? ---
-  Gold Answer: Trong vòng 24 giờ kể từ lúc đơn hàng được cập nhật trạng thái Giao hàng thành công.
+  [Gold Answer]: Trong vòng 24 giờ kể từ lúc đơn hàng được cập nhật trạng thái Giao hàng thành công.
+  [Top-3 Retrieval Results]:
+    Top-1 (Score: 0.3753, doc_id: shopee-marketplace-operating-regulations-buyer): d. Các sản phẩm gỗ nằm trong danh sách cấm theo quy định của Pháp Luật....
+    Top-2 (Score: 0.3753, doc_id: shopee-marketplace-operating-regulations-seller): d. Các sản phẩm gỗ nằm trong danh sách cấm theo quy định của Pháp Luật....
+    Top-3 (Score: 0.3390, doc_id: shopee-marketplace-operating-regulations-buyer): Người Bán: là thương nhân, tổ chức, cá nhân có nhu cầu sử dụng dịch vụ của Shopee bao gồm: tạo lập g...
   -> Evaluation: MISS
 
---- Query 2: Đơn hàng có giá trị trên bao nhiêu tiền thì KHÔNG được áp dụng chương trình Đồng kiểm? ---
-  Gold Answer: Đơn hàng có giá trị lớn hơn 3.000.000 VND (3 Triệu Đồng).
+--- Query 2: Người bán có bao nhiêu ngày để gửi phản hồi nếu không đồng ý với quyết định hoàn tiền của Shopee cho Người mua? ---
+  [Filter]: {'audience': 'seller'}
+  [Gold Answer]: Người bán cần gửi phản hồi trong vòng 02 ngày lịch kể từ ngày nhận được thông báo của Shopee.
+  [Top-3 Retrieval Results]:
+    Top-1 (Score: 0.4235, doc_id: shopee-return-refund-processing-seller): Chi tiết các điều kiện tham khảo dưới đây:  Lý do khiếu nại  Điều kiện áp dụng  Lưu ý  Chưa sử dụng ...
+    Top-2 (Score: 0.3751, doc_id: about-change-of-mind-returns-seller): Danh Mục Sản Phẩm Hạn Chế (*)  Bao gồm Các Sản Phẩm (*)  Thiết bị Điện tử & Công nghệ  (Có niêm phon...
+    Top-3 (Score: 0.3707, doc_id: shopee-terms-of-service-seller): SỐ DƯ TÀI KHOẢN SHOPEE  10.1. Số Dư Tài Khoản Shopee là một tính năng do Shopee hoặc nhà cung cấp dị...
   -> Evaluation: MISS
 
---- Query 3: Người bán bị phạt bao nhiêu điểm Sao Quả Tạ nếu có tỷ lệ giao hàng trễ (LSR) từ 10% trở lên và trên 30 đơn? ---
-  Gold Answer: 2 điểm phạt Sao Quả Tạ.
+--- Query 3: Sau khi Shopee chấp nhận hoàn tiền, thời gian nhận được tiền hoàn qua Thẻ tín dụng/ghi nợ là bao lâu? ---
+  [Filter]: {'category': 'Hoàn tiền'}
+  [Gold Answer]: Từ 7 - 14 ngày làm việc (tùy theo ngân hàng phát hành thẻ).
+  [Top-3 Retrieval Results]:
+    Top-1 (Score: 0.1343, doc_id: refund-timeline-and-check): Đối với các hình thức hoàn tiền về Ví Shopee Pay, tại thời điểm xử lý hoàn tiền, ví cần ở trạng thái...
+    Top-2 (Score: 0.0455, doc_id: refund-timeline-and-check): # [Trả hàng/Hoàn tiền] Thời gian nhận tiền hoàn và cách kiểm tra tiền hoàn  [Trả hàng/ Hoàn tiền] Th...
+    Top-3 (Score: -0.0589, doc_id: refund-timeline-and-check): 24 giờ  Bảng 1: Phương thức hoàn tiền và thời gian hoàn tiền theo các phương thức thanh toán trên Sh...
+  -> Evaluation: PASS (Found relevant context in Top-3)
+
+--- Query 4: Những đối tượng Người mua nào được áp dụng chính sách Trả hàng do Đổi ý/không còn nhu cầu? ---
+  [Gold Answer]: Người mua là thành viên Chương trình Khách hàng thân thiết Shopee đạt hạng Vàng/Kim Cương và/hoặc đang sử dụng Gói ShopeeVIP.
+  [Top-3 Retrieval Results]:
+    Top-1 (Score: 0.3563, doc_id: buyer-return-refund-request-guide): Lưu ý  Thời gian xử lý  Yêu cầu của bạn thường được xử lý trong khoảng 3 - 5 ngày làm việc. Kết quả ...
+    Top-2 (Score: 0.3443, doc_id: shopee-marketplace-operating-regulations-buyer): b. Đối với những Sản phẩm có bán trên Shopee nhưng Shopee chưa có dịch vụ vận chuyển liên kết phù hợ...
+    Top-3 (Score: 0.3443, doc_id: shopee-marketplace-operating-regulations-seller): b. Đối với những Sản phẩm có bán trên Shopee nhưng Shopee chưa có dịch vụ vận chuyển liên kết phù hợ...
   -> Evaluation: MISS
 
---- Query 4: Shop đăng bán sản phẩm hàng giả/hàng nhái trên Shopee sẽ phải chịu những chế tài xử lý nào? ---
-  Gold Answer: Sản phẩm bị khóa/xóa, cộng điểm phạt Sao Quả Tạ, tạm thời đóng băng hoặc khóa vĩnh viễn tài khoản nếu tái phạm.
-  -> Evaluation: MISS
-
---- Query 5: Thời hạn khiếu nại quyết định Trả hàng/Hoàn tiền là bao nhiêu ngày? ---
+--- Query 5: Thời hạn khiếu nại quyết định Trả hàng/Hoàn tiền đối với Người mua là bao nhiêu ngày? ---
   [Filter]: {'audience': 'buyer'}
-  Gold Answer: Người mua có 15 ngày kể từ ngày giao hàng; Người bán có 2 ngày kể từ khi nhận được thông báo để khiếu nại.
+  [Gold Answer]: Người mua có 15 ngày kể từ ngày giao hàng; Người bán có 2 ngày kể từ khi nhận được thông báo để khiếu nại.
+  [Top-3 Retrieval Results]:
+    Top-1 (Score: 0.3425, doc_id: shopee-terms-of-service-buyer): Người Sử Dụng chịu trách nhiệm đối với yêu cầu xóa Tài Khoản của mình. 5.6....
+    Top-2 (Score: 0.3309, doc_id: shopee-terms-of-service-buyer): Phụ thuộc vào quy định tại Điều 14.6, việc hoàn tiền cho Người Mua sẽ được thực hiện cùng một phương...
+    Top-3 (Score: 0.3209, doc_id: shopee-terms-of-service-buyer): Mỗi Shopee Xu đều có hạn sử dụng. Lưu ý kiểm tra chi tiết Tài Khoản của bạn trên Trang Shopee để biế...
   -> Evaluation: MISS
 
-Summary for SentenceChunker: 0/5 relevant in Top-3
+Summary for SentenceChunker: 1/5 relevant in Top-3
 
-==================================================
+============================================================
+BENCHMARK RUN: Strategy = FixedSizeChunker
+============================================================
+Loaded 25 files from /home/giap/Desktop/Workspace/Vin AI/K4-DAY07-NguyenVanGiap-2A202602903/data/shopee-returns -> Total chunks indexed: 1928
+
+--- Query 1: Thời gian tối đa để gửi yêu cầu Trả hàng/Hoàn tiền cho đơn hàng thực phẩm tươi sống là bao lâu? ---
+  [Gold Answer]: Trong vòng 24 giờ kể từ lúc đơn hàng được cập nhật trạng thái Giao hàng thành công.
+  [Top-3 Retrieval Results]:
+    Top-1 (Score: 0.3749, doc_id: shopee-return-refund-policy-buyer): rường hợp đó, Người Mua mất quyền Trả hàng COM trong tháng phát sinh hành vi vi phạm.  i. Việc áp dụ...
+    Top-2 (Score: 0.3749, doc_id: shopee-return-refund-policy-seller): rường hợp đó, Người Mua mất quyền Trả hàng COM trong tháng phát sinh hành vi vi phạm.  i. Việc áp dụ...
+    Top-3 (Score: 0.3749, doc_id: shopee-return-refund-policy): rường hợp đó, Người Mua mất quyền Trả hàng COM trong tháng phát sinh hành vi vi phạm.  i. Việc áp dụ...
+  -> Evaluation: PASS (Found relevant context in Top-3)
+
+--- Query 2: Người bán có bao nhiêu ngày để gửi phản hồi nếu không đồng ý với quyết định hoàn tiền của Shopee cho Người mua? ---
+  [Filter]: {'audience': 'seller'}
+  [Gold Answer]: Người bán cần gửi phản hồi trong vòng 02 ngày lịch kể từ ngày nhận được thông báo của Shopee.
+  [Top-3 Retrieval Results]:
+    Top-1 (Score: 0.3893, doc_id: shopee-terms-of-service-seller): n, phù hợp với hoặc theo yêu cầu của các quy định pháp luật hiện hành.     3. GIỚI HẠN TRÁCH NHIỆM  ...
+    Top-2 (Score: 0.3277, doc_id: shopee-marketplace-operating-regulations-seller): ô tả sản phẩm, dịch vụ được đăng bán của Người Bán và việc bảo hành sẽ chỉ được thực hiện theo Chính...
+    Top-3 (Score: 0.3135, doc_id: shopee-mall-terms-of-service-seller): all) trên Trang Shopee, bao gồm việc bảo hành cho bất kỳ và toàn bộ Sản Phẩm, thông số kỹ thuật, bản...
+  -> Evaluation: MISS
+
+--- Query 3: Sau khi Shopee chấp nhận hoàn tiền, thời gian nhận được tiền hoàn qua Thẻ tín dụng/ghi nợ là bao lâu? ---
+  [Filter]: {'category': 'Hoàn tiền'}
+  [Gold Answer]: Từ 7 - 14 ngày làm việc (tùy theo ngân hàng phát hành thẻ).
+  [Top-3 Retrieval Results]:
+    Top-1 (Score: 0.1690, doc_id: refund-timeline-and-check): ng/ghi nợ  Thẻ tín dụng/ghi nợ  7 - 14 ngày làm việc (tùy theo ngân hàng)  Apple Pay  Thẻ tín dụng/g...
+    Top-2 (Score: 0.1512, doc_id: refund-timeline-and-check): ng này dù đã được chấp nhận Trả hàng/Hoàn tiền. Shopee sẽ hoàn trước 100% tiền hàng (...
+    Top-3 (Score: 0.0929, doc_id: refund-timeline-and-check): hỉ hỗ trợ hoàn tiền về đúng tài khoản Tín dụng/Ghi nợ đã sử dụng khi thanh toán đơn hàng.  Đối với h...
+  -> Evaluation: PASS (Found relevant context in Top-3)
+
+--- Query 4: Những đối tượng Người mua nào được áp dụng chính sách Trả hàng do Đổi ý/không còn nhu cầu? ---
+  [Gold Answer]: Người mua là thành viên Chương trình Khách hàng thân thiết Shopee đạt hạng Vàng/Kim Cương và/hoặc đang sử dụng Gói ShopeeVIP.
+  [Top-3 Retrieval Results]:
+    Top-1 (Score: 0.3497, doc_id: about-change-of-mind-returns-buyer):  thân thiết Shopee đạt hạng Vàng/Kim Cương và/hoặc đang sử dụng Gói ShopeeVIP.  Yêu cầu trả hàng phả...
+    Top-2 (Score: 0.3497, doc_id: about-change-of-mind-returns-seller):  thân thiết Shopee đạt hạng Vàng/Kim Cương và/hoặc đang sử dụng Gói ShopeeVIP.  Yêu cầu trả hàng phả...
+    Top-3 (Score: 0.3329, doc_id: shopee-mall-terms-of-service-buyer):   Ngoài ra, cũng xin lưu ý rằng một số loại Sản Phẩm nhất định tại Shopee Mall có thể được loại trừ ...
+  -> Evaluation: PASS (Found relevant context in Top-3)
+
+--- Query 5: Thời hạn khiếu nại quyết định Trả hàng/Hoàn tiền đối với Người mua là bao nhiêu ngày? ---
+  [Filter]: {'audience': 'buyer'}
+  [Gold Answer]: Người mua có 15 ngày kể từ ngày giao hàng; Người bán có 2 ngày kể từ khi nhận được thông báo để khiếu nại.
+  [Top-3 Retrieval Results]:
+    Top-1 (Score: 0.3951, doc_id: shopee-terms-of-service-buyer): p dụng khi bạn sử dụng các sản phẩm, website hoặc dịch vụ đó ngay cả khi những điều khoản dịch vụ nà...
+    Top-2 (Score: 0.3668, doc_id: shopee-terms-of-service-buyer): nh của bất kỳ điều khoản còn lại nào cũng như không ảnh hưởng tới hiệu lực cũng như tính thi hành củ...
+    Top-3 (Score: 0.3649, doc_id: shopee-marketplace-operating-regulations-buyer):  Người Mua và chuyển tới Người Bán;  Bước 4: Người Bán chuyển hàng cho đơn vị vận chuyển;  Bước 5: N...
+  -> Evaluation: MISS
+
+Summary for FixedSizeChunker: 3/5 relevant in Top-3
+
+============================================================
 BENCHMARK RUN: Strategy = RecursiveChunker
-==================================================
-Loaded 0 files -> Total chunks indexed: 0
+============================================================
+Loaded 25 files from /home/giap/Desktop/Workspace/Vin AI/K4-DAY07-NguyenVanGiap-2A202602903/data/shopee-returns -> Total chunks indexed: 2687
 
 --- Query 1: Thời gian tối đa để gửi yêu cầu Trả hàng/Hoàn tiền cho đơn hàng thực phẩm tươi sống là bao lâu? ---
-  Gold Answer: Trong vòng 24 giờ kể từ lúc đơn hàng được cập nhật trạng thái Giao hàng thành công.
+  [Gold Answer]: Trong vòng 24 giờ kể từ lúc đơn hàng được cập nhật trạng thái Giao hàng thành công.
+  [Top-3 Retrieval Results]:
+    Top-1 (Score: 0.4070, doc_id: shopee-marketplace-operating-regulations-buyer): được...
+    Top-2 (Score: 0.4070, doc_id: shopee-marketplace-operating-regulations-seller): được...
+    Top-3 (Score: 0.4039, doc_id: shopee-terms-of-service-buyer): 6.3. Người Sử Dụng hiểu rằng các Nội Dung, dù được đăng công khai hoặc truyền tải riêng tư, là hoàn ...
   -> Evaluation: MISS
 
---- Query 2: Đơn hàng có giá trị trên bao nhiêu tiền thì KHÔNG được áp dụng chương trình Đồng kiểm? ---
-  Gold Answer: Đơn hàng có giá trị lớn hơn 3.000.000 VND (3 Triệu Đồng).
+--- Query 2: Người bán có bao nhiêu ngày để gửi phản hồi nếu không đồng ý với quyết định hoàn tiền của Shopee cho Người mua? ---
+  [Filter]: {'audience': 'seller'}
+  [Gold Answer]: Người bán cần gửi phản hồi trong vòng 02 ngày lịch kể từ ngày nhận được thông báo của Shopee.
+  [Top-3 Retrieval Results]:
+    Top-1 (Score: 0.4503, doc_id: shopee-marketplace-operating-regulations-seller):                                                                                                     ...
+    Top-2 (Score: 0.3621, doc_id: shopee-marketplace-operating-regulations-seller): Công ty cam kết sẽ phản hồi trong vòng 24 tiếng để cùng Người dùng thống nhất phương án...
+    Top-3 (Score: 0.3180, doc_id: shopee-terms-of-service-seller): “Dịch Vụ” chúng tôi cung cấp hoặc sẵn có bao gồm (a) Trang Shopee, (b) các dịch vụ được cung cấp bởi...
   -> Evaluation: MISS
 
---- Query 3: Người bán bị phạt bao nhiêu điểm Sao Quả Tạ nếu có tỷ lệ giao hàng trễ (LSR) từ 10% trở lên và trên 30 đơn? ---
-  Gold Answer: 2 điểm phạt Sao Quả Tạ.
+--- Query 3: Sau khi Shopee chấp nhận hoàn tiền, thời gian nhận được tiền hoàn qua Thẻ tín dụng/ghi nợ là bao lâu? ---
+  [Filter]: {'category': 'Hoàn tiền'}
+  [Gold Answer]: Từ 7 - 14 ngày làm việc (tùy theo ngân hàng phát hành thẻ).
+  [Top-3 Retrieval Results]:
+    Top-1 (Score: 0.1937, doc_id: refund-timeline-and-check): # [Trả hàng/Hoàn tiền] Thời gian nhận tiền hoàn và cách kiểm tra tiền hoàn  [Trả hàng/ Hoàn tiền] Th...
+    Top-2 (Score: 0.1567, doc_id: refund-timeline-and-check): Đối với các đơn hàng thanh toán bằng SPayLater kết hợp với các phương thức thanh toán khác:  Số tiền...
+    Top-3 (Score: 0.1180, doc_id: refund-timeline-and-check): Tài khoản Ngân hàng ban đầu  7 ngày làm việc  Ví ShopeePay  Ví ShopeePay  24 giờ (với điều kiện Ví  ...
+  -> Evaluation: PASS (Found relevant context in Top-3)
+
+--- Query 4: Những đối tượng Người mua nào được áp dụng chính sách Trả hàng do Đổi ý/không còn nhu cầu? ---
+  [Gold Answer]: Người mua là thành viên Chương trình Khách hàng thân thiết Shopee đạt hạng Vàng/Kim Cương và/hoặc đang sử dụng Gói ShopeeVIP.
+  [Top-3 Retrieval Results]:
+    Top-1 (Score: 0.3955, doc_id: shopee-terms-of-service-buyer): gian...
+    Top-2 (Score: 0.3955, doc_id: shopee-terms-of-service-seller): gian...
+    Top-3 (Score: 0.3856, doc_id: shopee-terms-of-service-buyer): iii. Shopee sẽ được quyền xem các hoạt động của Tài Khoản Phụ như là hoạt động của Tài Khoản; và  iv...
   -> Evaluation: MISS
 
---- Query 4: Shop đăng bán sản phẩm hàng giả/hàng nhái trên Shopee sẽ phải chịu những chế tài xử lý nào? ---
-  Gold Answer: Sản phẩm bị khóa/xóa, cộng điểm phạt Sao Quả Tạ, tạm thời đóng băng hoặc khóa vĩnh viễn tài khoản nếu tái phạm.
-  -> Evaluation: MISS
-
---- Query 5: Thời hạn khiếu nại quyết định Trả hàng/Hoàn tiền là bao nhiêu ngày? ---
+--- Query 5: Thời hạn khiếu nại quyết định Trả hàng/Hoàn tiền đối với Người mua là bao nhiêu ngày? ---
   [Filter]: {'audience': 'buyer'}
-  Gold Answer: Người mua có 15 ngày kể từ ngày giao hàng; Người bán có 2 ngày kể từ khi nhận được thông báo để khiếu nại.
+  [Gold Answer]: Người mua có 15 ngày kể từ ngày giao hàng; Người bán có 2 ngày kể từ khi nhận được thông báo để khiếu nại.
+  [Top-3 Retrieval Results]:
+    Top-1 (Score: 0.3377, doc_id: installation-service-warranty-and-returns-buyer): # Tổng Hợp Câu Hỏi Về Dịch Vụ Lắp Đặt Được Cung Cấp Bởi Đối Tác Của Shopee  Tổng Hợp Câu Hỏi Về Dịch...
+    Top-2 (Score: 0.3339, doc_id: installation-service-warranty-and-returns-buyer): Bước 2 - Hẹn lịch lắp đặt: Sau khi đặt đơn thành công, bạn vào trang Thông tin đơn hàng > bấm chọn m...
+    Top-3 (Score: 0.3279, doc_id: shopee-product-insurance-faq): Bảo hiểm bắt buộc TNDS Xe máy: 1 - 3 năm (Tùy theo lựa chọn quyền lợi bảo hiểm của Người mua)  Bảo h...
   -> Evaluation: MISS
 
-Summary for RecursiveChunker: 0/5 relevant in Top-3
+Summary for RecursiveChunker: 1/5 relevant in Top-3
 
-==================================================
+============================================================
 BENCHMARK RUN: Strategy = HeadingChunker
-==================================================
-Loaded 0 files -> Total chunks indexed: 0
+============================================================
+Loaded 25 files from /home/giap/Desktop/Workspace/Vin AI/K4-DAY07-NguyenVanGiap-2A202602903/data/shopee-returns -> Total chunks indexed: 2306
 
 --- Query 1: Thời gian tối đa để gửi yêu cầu Trả hàng/Hoàn tiền cho đơn hàng thực phẩm tươi sống là bao lâu? ---
-  Gold Answer: Trong vòng 24 giờ kể từ lúc đơn hàng được cập nhật trạng thái Giao hàng thành công.
+  [Gold Answer]: Trong vòng 24 giờ kể từ lúc đơn hàng được cập nhật trạng thái Giao hàng thành công.
+  [Top-3 Retrieval Results]:
+    Top-1 (Score: 0.4667, doc_id: shopee-marketplace-operating-regulations-buyer): # QUY CHẾ HOẠT ĐỘNG SÀN THƯƠNG MẠI ĐIỆN TỬ SHOPEE.VN i. Đối với Người bán nước ngoài: phải đặt tên b...
+    Top-2 (Score: 0.4667, doc_id: shopee-marketplace-operating-regulations-seller): # QUY CHẾ HOẠT ĐỘNG SÀN THƯƠNG MẠI ĐIỆN TỬ SHOPEE.VN i. Đối với Người bán nước ngoài: phải đặt tên b...
+    Top-3 (Score: 0.3539, doc_id: shopee-terms-of-service-buyer): # ĐIỀU KHOẢN DỊCH VỤ Điều khoản này không áp dụng đối với các thông tin cá nhân là đối tượng của chí...
   -> Evaluation: MISS
 
---- Query 2: Đơn hàng có giá trị trên bao nhiêu tiền thì KHÔNG được áp dụng chương trình Đồng kiểm? ---
-  Gold Answer: Đơn hàng có giá trị lớn hơn 3.000.000 VND (3 Triệu Đồng).
+--- Query 2: Người bán có bao nhiêu ngày để gửi phản hồi nếu không đồng ý với quyết định hoàn tiền của Shopee cho Người mua? ---
+  [Filter]: {'audience': 'seller'}
+  [Gold Answer]: Người bán cần gửi phản hồi trong vòng 02 ngày lịch kể từ ngày nhận được thông báo của Shopee.
+  [Top-3 Retrieval Results]:
+    Top-1 (Score: 0.3776, doc_id: shopee-return-refund-policy-seller): # CHÍNH SÁCH TRẢ HÀNG VÀ HOÀN TIỀN i. Việc áp dụng hạn mức được quy định tại điểm này được thực hiện...
+    Top-2 (Score: 0.3669, doc_id: shopee-terms-of-service-seller): # ĐIỀU KHOẢN DỊCH VỤ Tin...
+    Top-3 (Score: 0.3415, doc_id: shopee-marketplace-operating-regulations-seller): # QUY CHẾ HOẠT ĐỘNG SÀN THƯƠNG MẠI ĐIỆN TỬ SHOPEE.VN Shopee khuyến cáo Người Mua hàng cần kiểm tra c...
+  -> Evaluation: PASS (Found relevant context in Top-3)
+
+--- Query 3: Sau khi Shopee chấp nhận hoàn tiền, thời gian nhận được tiền hoàn qua Thẻ tín dụng/ghi nợ là bao lâu? ---
+  [Filter]: {'category': 'Hoàn tiền'}
+  [Gold Answer]: Từ 7 - 14 ngày làm việc (tùy theo ngân hàng phát hành thẻ).
+  [Top-3 Retrieval Results]:
+    Top-1 (Score: 0.2573, doc_id: refund-timeline-and-check): # [Trả hàng/Hoàn tiền] Thời gian nhận tiền hoàn và cách kiểm tra tiền hoàn Nếu bạn gửi yêu cầu THHT ...
+    Top-2 (Score: 0.2368, doc_id: refund-timeline-and-check): # [Trả hàng/Hoàn tiền] Thời gian nhận tiền hoàn và cách kiểm tra tiền hoàn Đối với các đơn hàng than...
+    Top-3 (Score: 0.1937, doc_id: refund-timeline-and-check): # [Trả hàng/Hoàn tiền] Thời gian nhận tiền hoàn và cách kiểm tra tiền hoàn  [Trả hàng/ Hoàn tiền] Th...
+  -> Evaluation: PASS (Found relevant context in Top-3)
+
+--- Query 4: Những đối tượng Người mua nào được áp dụng chính sách Trả hàng do Đổi ý/không còn nhu cầu? ---
+  [Gold Answer]: Người mua là thành viên Chương trình Khách hàng thân thiết Shopee đạt hạng Vàng/Kim Cương và/hoặc đang sử dụng Gói ShopeeVIP.
+  [Top-3 Retrieval Results]:
+    Top-1 (Score: 0.3563, doc_id: shopee-marketplace-operating-regulations-buyer): # QUY CHẾ HOẠT ĐỘNG SÀN THƯƠNG MẠI ĐIỆN TỬ SHOPEE.VN Bước 1: Người Mua tìm hiểu thông tin về sản phẩ...
+    Top-2 (Score: 0.3563, doc_id: shopee-marketplace-operating-regulations-seller): # QUY CHẾ HOẠT ĐỘNG SÀN THƯƠNG MẠI ĐIỆN TỬ SHOPEE.VN Bước 1: Người Mua tìm hiểu thông tin về sản phẩ...
+    Top-3 (Score: 0.3490, doc_id: shopee-marketplace-operating-regulations-buyer): # QUY CHẾ HOẠT ĐỘNG SÀN THƯƠNG MẠI ĐIỆN TỬ SHOPEE.VN Thông tin đơn hàng sau khi được Người Bán xác n...
   -> Evaluation: MISS
 
---- Query 3: Người bán bị phạt bao nhiêu điểm Sao Quả Tạ nếu có tỷ lệ giao hàng trễ (LSR) từ 10% trở lên và trên 30 đơn? ---
-  Gold Answer: 2 điểm phạt Sao Quả Tạ.
-  -> Evaluation: MISS
-
---- Query 4: Shop đăng bán sản phẩm hàng giả/hàng nhái trên Shopee sẽ phải chịu những chế tài xử lý nào? ---
-  Gold Answer: Sản phẩm bị khóa/xóa, cộng điểm phạt Sao Quả Tạ, tạm thời đóng băng hoặc khóa vĩnh viễn tài khoản nếu tái phạm.
-  -> Evaluation: MISS
-
---- Query 5: Thời hạn khiếu nại quyết định Trả hàng/Hoàn tiền là bao nhiêu ngày? ---
+--- Query 5: Thời hạn khiếu nại quyết định Trả hàng/Hoàn tiền đối với Người mua là bao nhiêu ngày? ---
   [Filter]: {'audience': 'buyer'}
-  Gold Answer: Người mua có 15 ngày kể từ ngày giao hàng; Người bán có 2 ngày kể từ khi nhận được thông báo để khiếu nại.
+  [Gold Answer]: Người mua có 15 ngày kể từ ngày giao hàng; Người bán có 2 ngày kể từ khi nhận được thông báo để khiếu nại.
+  [Top-3 Retrieval Results]:
+    Top-1 (Score: 0.3777, doc_id: shopee-mall-terms-of-service-buyer): # Điều Khoản Dịch Vụ của Shopee Mall 2.4.     Quyết định của Shopee đối với việc trả hàng và hoàn ti...
+    Top-2 (Score: 0.3377, doc_id: installation-service-warranty-and-returns-buyer): # Tổng Hợp Câu Hỏi Về Dịch Vụ Lắp Đặt Được Cung Cấp Bởi Đối Tác Của Shopee  Tổng Hợp Câu Hỏi Về Dịch...
+    Top-3 (Score: 0.3340, doc_id: shopee-product-insurance-faq): # [Bảo hiểm] Tổng hợp các thông tin liên quan Bạn có thể gửi yêu cầu hủy gói bảo hiểm nếu đáp ứng cá...
   -> Evaluation: MISS
 
-Summary for HeadingChunker: 0/5 relevant in Top-3
+Summary for HeadingChunker: 2/5 relevant in Top-3

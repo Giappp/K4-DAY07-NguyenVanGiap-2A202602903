@@ -1,0 +1,162 @@
+[
+  {
+    "id": 1,
+    "query": "Thời gian tối đa để gửi yêu cầu Trả hàng/Hoàn tiền cho đơn hàng thực phẩm tươi sống và đông lạnh là bao lâu?",
+    "gold_answer": "Người mua cần gửi yêu cầu Trả hàng/Hoàn tiền trong vòng 24 giờ kể từ lúc đơn hàng được cập nhật giao hàng thành công (thay vì 15 ngày như các sản phẩm thông thường).",
+    "gold_doc": "shopee-return-refund-policy-buyer",
+    "source_file": "data/shopee-returns/shopee-return-refund-policy-buyer.md",
+    "filter": {
+      "audience": "buyer"
+    },
+    "target_phrase": "24 giờ kể từ lúc đơn hàng được cập nhật giao hàng thành công",
+    "section": "Điều 3.2 - ĐIỀU KIỆN YÊU CẦU TRẢ HÀNG/HOÀN TIỀN",
+    "test_intent": "Kiểm tra khả năng phân biệt thời hạn đặc thù (24h cho thực phẩm tươi sống/đông lạnh) so với thời hạn thông thường (15 ngày)."
+  },
+  {
+    "id": 2,
+    "query": "Người bán có bao nhiêu ngày để gửi phản hồi nếu không đồng ý với quyết định hoàn tiền của Shopee cho Người mua?",
+    "gold_answer": "Người bán cần gửi phản hồi trong vòng 02 ngày lịch kể từ ngày nhận được thông báo của Shopee. Sau thời gian này nếu không nhận được phản hồi, Shopee xem như Người bán đồng ý.",
+    "gold_doc": "shopee-return-refund-policy-seller",
+    "source_file": "data/shopee-returns/shopee-return-refund-policy-seller.md",
+    "filter": {
+      "audience": "seller"
+    },
+    "target_phrase": "trong vòng 02 ngày lịch",
+    "section": "Điều 5 - QUYỀN CỦA NGƯỜI BÁN",
+    "test_intent": "Kiểm tra khả năng lọc theo metadata 'audience: seller' để lấy thời hạn khiếu nại của Người bán (2 ngày) thay vì Người mua."
+  },
+  {
+    "id": 3,
+    "query": "Sau khi Shopee chấp thuận hoàn tiền, Người mua thanh toán qua Thẻ tín dụng/ghi nợ (Credit/Debit Card) sẽ nhận được tiền hoàn trong thời gian bao lâu?",
+    "gold_answer": "Thời gian nhận tiền hoàn vào thẻ tín dụng/ghi nợ là từ 7 - 14 ngày làm việc (tùy theo ngân hàng phát hành thẻ).",
+    "gold_doc": "refund-timeline-and-check",
+    "source_file": "data/shopee-returns/refund-timeline-and-check.md",
+    "filter": {
+      "audience": "buyer",
+      "category": "Hoàn tiền"
+    },
+    "target_phrase": "7 - 14 ngày làm việc",
+    "section": "Bảng 1: Phương thức hoàn tiền và thời gian hoàn tiền theo các phương thức thanh toán",
+    "test_intent": "Kiểm tra việc trích xuất số liệu thời gian hoàn tiền chính xác theo từng phương thức thanh toán ngân hàng."
+  },
+  {
+    "id": 4,
+    "query": "Những đối tượng khách hàng nào được quyền gửi yêu cầu Trả hàng với lý do 'Đổi ý/không còn nhu cầu'?",
+    "gold_answer": "Lý do Trả hàng 'Đổi ý' chỉ áp dụng cho Người mua là thành viên Chương trình Khách hàng thân thiết Shopee đạt hạng Vàng, Kim Cương và/hoặc đang sử dụng Gói ShopeeVIP (sản phẩm phải còn nguyên bao bì, tem mác và không thuộc danh mục hạn chế).",
+    "gold_doc": "about-change-of-mind-returns-buyer",
+    "source_file": "data/shopee-returns/about-change-of-mind-returns-buyer.md",
+    "filter": {
+      "audience": "buyer"
+    },
+    "target_phrase": "đạt hạng Vàng/Kim Cương và/hoặc đang sử dụng Gói ShopeeVIP",
+    "section": "Mục 1 - Trả hàng do 'đổi ý/không còn nhu cầu' nghĩa là gì?",
+    "test_intent": "Kiểm tra điều kiện tiên quyết (eligibility) về cấp bậc thành viên đối với chính sách hoàn trả đặc biệt COM (Change of Mind)."
+  },
+  {
+    "id": 5,
+    "query": "Người mua đang sử dụng Gói ShopeeVIP được áp dụng hạn mức Trả hàng do 'Đổi ý' (Trả hàng COM) tối đa bao nhiêu lần mỗi tháng?",
+    "gold_answer": "Người mua sử dụng Gói ShopeeVIP có hạn mức Trả hàng COM tối đa là 15 (mười lăm) lần trong mỗi tháng dương lịch. Hạn mức còn lại không được cộng dồn sang tháng sau.",
+    "gold_doc": "shopee-return-refund-policy-buyer",
+    "source_file": "data/shopee-returns/shopee-return-refund-policy-buyer.md",
+    "filter": {
+      "audience": "buyer"
+    },
+    "target_phrase": "hạn mức Trả hàng COM là 15 (mười lăm) lần trong mỗi tháng dương lịch",
+    "section": "Điều 4.2.b - Hạn mức Trả hàng COM",
+    "test_intent": "Kiểm tra điều khoản hạn mức số lần cụ thể theo chu kỳ tháng đối với gói ShopeeVIP."
+  },
+  {
+    "id": 6,
+    "query": "Khi Shopee chấp thuận phương án 'Trả hàng & Hoàn tiền', Người mua có bao nhiêu ngày để hoàn tất việc gửi trả sản phẩm về kho Shopee hoặc Người bán?",
+    "gold_answer": "Người mua cần chọn hình thức trả hàng và hoàn tất việc gửi trả hàng về kho Shopee/Người bán trong vòng 06 ngày kể từ thời điểm nhận được thông báo gửi trả hàng từ Shopee.",
+    "gold_doc": "shopee-return-refund-processing-buyer",
+    "source_file": "data/shopee-returns/shopee-return-refund-processing-buyer.md",
+    "filter": {
+      "audience": "buyer"
+    },
+    "target_phrase": "trong vòng 6 ngày kể từ thời điểm nhận được thông báo",
+    "section": "Mục 3 - Phân loại phương án xử lý Trả hàng/ Hoàn tiền của Shopee",
+    "test_intent": "Kiểm tra thời hạn hành động (action deadline) của người mua sau khi yêu cầu trả hàng được phê duyệt."
+  },
+  {
+    "id": 7,
+    "query": "Người mua có thể gửi yêu cầu hủy cho một đơn hàng trên Shopee tối đa bao nhiêu lần?",
+    "gold_answer": "Người mua chỉ có thể yêu cầu hủy đơn hàng duy nhất 1 lần cho mỗi đơn hàng. Nếu yêu cầu hủy đơn bị từ chối, Người mua sẽ không thể tiếp tục gửi yêu cầu hủy cho đơn hàng này nữa.",
+    "gold_doc": "buyer-cancel-order-guide",
+    "source_file": "data/shopee-returns/buyer-cancel-order-guide.md",
+    "filter": {
+      "audience": "buyer",
+      "category": "Hủy đơn hàng"
+    },
+    "target_phrase": "hủy đơn hàng duy nhất 1 lần cho mỗi đơn hàng",
+    "section": "Mục ⚠️ Lưu ý",
+    "test_intent": "Kiểm tra quy định ràng buộc nghiệp vụ về số lần thao tác hủy đơn của người mua."
+  },
+  {
+    "id": 8,
+    "query": "Đơn hàng đã chuyển sang trạng thái 'Đã hủy' trên hệ thống Shopee có thể khôi phục lại để tiếp tục giao không?",
+    "gold_answer": "Không thể khôi phục các đơn hàng ở trạng thái 'Đã hủy' để giao hàng lại. Nếu có nhu cầu mua lại, Người mua có thể thương lượng giá với Người bán và đặt một đơn hàng mới.",
+    "gold_doc": "cancelled-order-recovery-and-reasons-buyer",
+    "source_file": "data/shopee-returns/cancelled-order-recovery-and-reasons-buyer.md",
+    "filter": {
+      "audience": "buyer",
+      "category": "Hủy đơn hàng"
+    },
+    "target_phrase": "không thể khôi phục để giao hàng lại",
+    "section": "Nội dung mở đầu",
+    "test_intent": "Kiểm tra tính bất biến của trạng thái đơn hàng (order lifecycle) sau khi bị hủy."
+  },
+  {
+    "id": 9,
+    "query": "Dịch vụ lắp đặt thiết bị được cung cấp bởi đối tác của Shopee hiện áp dụng tại những khu vực tỉnh/thành phố nào?",
+    "gold_answer": "Dịch vụ lắp đặt áp dụng tại 2 khu vực gồm: Hà Nội và Thành phố Hồ Chí Minh (ngoại trừ Đặc khu Côn Đảo).",
+    "gold_doc": "installation-service-warranty-and-returns-buyer",
+    "source_file": "data/shopee-returns/installation-service-warranty-and-returns-buyer.md",
+    "filter": {
+      "audience": "buyer"
+    },
+    "target_phrase": "Hồ Chí Minh (ngoại trừ Đặc khu Côn Đảo), Hà Nội",
+    "section": "Mục 6 - Các khu vực nào được áp dụng dịch vụ lắp đặt ?",
+    "test_intent": "Kiểm tra thông tin phạm vi địa lý và trường hợp ngoại lệ địa lý cụ thể."
+  },
+  {
+    "id": 10,
+    "query": "Sau khi đặt hàng kèm Dịch vụ lắp đặt của Shopee, Người mua được chọn lịch lắp đặt tối đa là bao nhiêu ngày?",
+    "gold_answer": "Người mua được chọn lịch hẹn lắp đặt tối đa là 06 ngày, tính từ Thời gian giao hàng dự kiến muộn nhất của đơn hàng.",
+    "gold_doc": "installation-service-warranty-and-returns-buyer",
+    "source_file": "data/shopee-returns/installation-service-warranty-and-returns-buyer.md",
+    "filter": {
+      "audience": "buyer"
+    },
+    "target_phrase": "tối đa là 6 ngày, tính từ Thời gian giao hàng dự kiến muộn nhất",
+    "section": "Mục 4 - ⚠️ Lưu ý về giới hạn ngày được chọn",
+    "test_intent": "Kiểm tra quy tắc tính mốc thời gian hẹn lịch dịch vụ dựa trên SLA giao hàng."
+  },
+  {
+    "id": 11,
+    "query": "Người mua đã bấm xác nhận 'Đã nhận được hàng' thì có còn quyền gửi yêu cầu Trả hàng/Hoàn tiền theo chính sách Shopee Đảm Bảo không?",
+    "gold_answer": "Người mua vẫn có thể yêu cầu Trả hàng/Hoàn tiền sau khi nhấn 'Đã nhận được hàng' nếu đơn hàng vẫn còn nằm trong thời hạn 15 ngày kể từ lúc đơn hàng được cập nhật trạng thái 'Giao hàng thành công'.",
+    "gold_doc": "shopee-guarantee-buyer",
+    "source_file": "data/shopee-returns/shopee-guarantee-buyer.md",
+    "filter": {
+      "audience": "buyer",
+      "category": "Shopee Đảm Bảo"
+    },
+    "target_phrase": "vẫn có thể yêu cầu Trả hàng/Hoàn tiền sau khi nhấn \"Đã nhận được hàng\"",
+    "section": "Mục ⚠️ Lưu ý",
+    "test_intent": "Kiểm tra quyền lợi bảo vệ người mua mở rộng của Shopee Đảm Bảo ngay cả sau khi đã xác nhận nhận hàng."
+  },
+  {
+    "id": 12,
+    "query": "Đối với sản phẩm mua tại Shopee Mall, nếu Người mua chọn hình thức hoàn trả 'Tự sắp xếp' thì chi phí vận chuyển được hoàn lại như thế nào và qua kênh nào?",
+    "gold_answer": "Người mua thanh toán trước chi phí vận chuyển. Shopee sẽ hoàn lại 100% số tiền bằng chi phí vận chuyển đó vào 'Số Dư Tài Khoản Shopee' trên ứng dụng trong thời hạn 03 - 05 ngày làm việc sau khi Người mua gửi hàng và yêu cầu được chấp nhận.",
+    "gold_doc": "shopee-return-refund-policy-buyer",
+    "source_file": "data/shopee-returns/shopee-return-refund-policy-buyer.md",
+    "filter": {
+      "audience": "buyer"
+    },
+    "target_phrase": "hoàn lại số tiền bằng với chi phí vận chuyển mà Người Mua đã thanh toán cho đơn vị vận chuyển thông qua “Số Dư Tài Khoản Shopee”",
+    "section": "Điều 8.1 - TRÁCH NHIỆM VỀ CHI PHÍ HOÀN TRẢ SẢN PHẨM CỦA NGƯỜI MUA",
+    "test_intent": "Kiểm tra phân biệt chính sách hoàn phí ship đối với Shopee Mall (hoàn 100% tiền vào số dư) so với Non-Mall (chỉ hỗ trợ một phần bằng Shopee Xu)."
+  }
+]

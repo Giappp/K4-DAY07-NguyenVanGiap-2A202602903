@@ -1,12 +1,12 @@
 ---
-doc_id: "about-change-of-mind-returns"
+doc_id: "about-change-of-mind-returns-buyer"
 title: "Những điều cần biết về Trả hàng do \"Đổi ý/không còn nhu cầu\""
-source_url: "https://help.shopee.vn/portal/4/article/204305-Nh%E1%BB%AFng-%C4%91i%E1%BB%81u-c%E1%BA%A7n-bi%E1%BA%BFt-v%E1%BB%81-Tr%E1%BA%A3-h%C3%A0ng-do-%22%C4%90%E1%BB%95i-%C3%BD%2Fkh%C3%B4ng-c%C3%B2n-nhu-c%E1%BA%A7u%22?previousPage=secondary%20category"
+source_url: "https://help.shopee.vn/portal/4/article/204305-Nh%E1%BB%AFng-%C4%91i%E1%BB%81u-c%E1%BA%A7n-bi%E1%BA%BFt-v%E1%BB%81-Tr%E1%BA%A3-h%C3%A0ng-do-%22%C4%90%E1%BB%95i-%C3%BD%2Fkh%C3%B4ng-c%C3%B2n-nhu-c%E1%BA%A7u%22"
 retrieved_at: "2026-09-20"
 document_version: "not-stated"
 audience: "buyer"
-category: "returns-policy"
-language: "vi"
+category: "Trả hàng/Đổi ý"
+language: "vi-VN"
 ---
 
 # Những điều cần biết về Trả hàng do "Đổi ý/không còn nhu cầu"
@@ -192,3 +192,9 @@ Nguyên bao bì / nguyên seal / nguyên tem mác - chưa bị khui mở dù là
 Còn nguyên bộ sản phẩm đi kèm dù là phụ kiện, thẻ bảo hành, sách hướng dẫn, thẻ thương hiệu, hoặc bất kỳ phụ kiện gì kèm theo 
 
 Việc thiếu hộp hoặc bất kỳ phục kiện nào cũng làm ảnh hưởng đến tính nguyên vẹn của sản phẩm, ảnh hưởng đến cả Người bán lẫn Người mua tiếp theo nên trong trường hợp này, Shopee sẽ không thể hỗ trợ Trả hàng với lý do Đổi ý.
+
+Bạn có hài lòng với bài viết này?
+
+Hài lòng
+
+Không hài lòng
